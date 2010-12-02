@@ -174,7 +174,7 @@ module ActsAsAudited
           version = if self.version
             self.version - 1
           else
-            previous = audits.find(:first, :offset => 1,
+            previous = audits.except(:order).find(:first, :offset => 1,
               :order => "#{Audit.quoted_table_name}.version DESC")
             previous ? previous.version : 1
           end
