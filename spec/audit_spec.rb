@@ -83,10 +83,10 @@ describe Audit do
     user = User.create! :name => 'Set Version Number'
     user.audits.first.version.should be(1)
     user.update_attribute :name, "Set to 2"
-    user.audits(true).first.version.should be(1)
-    user.audits(true).last.version.should be(2)
+    user.audits.first.version.should be(1)
+    user.audits.last.version.should be(2)
     user.destroy
-    user.audits(true).last.version.should be(3)
+    user.audits.last.version.should be(3)
   end
 
   describe "reconstruct_attributes" do

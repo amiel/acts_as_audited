@@ -142,8 +142,7 @@ module ActsAsAudited
 
       def revision_with(attributes)
         self.dup.tap do |revision|
-          revision.send :instance_variable_set, '@attributes', self.attributes_before_type_cast
-          revision.send :instance_variable_set, '@new_record', false unless self.destroyed?
+          revision.init_with('attributes' => self.attributes_before_type_cast) unless self.destroyed?
           Audit.assign_revision_attributes(revision, attributes)
 
           # Remove any association proxies so that they will be recreated

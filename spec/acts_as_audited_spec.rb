@@ -225,7 +225,6 @@ describe ActsAsAudited::Auditor do
     it "should find the previous revision with :previous" do
       revision = user.revision(:previous)
       revision.version.should be(4)
-      #revision.should == user.revision(4)
       revision.attributes.should == user.revision(4).attributes
     end
 
